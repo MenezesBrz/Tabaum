@@ -9,29 +9,89 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-      <header>
-            <nav>
-                <img src="images/tabaum_brand.png" class="brand">
-                <ul class="links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Meats</a></li>
-                    <li><a href="#">Contact us</a></li>
-                </ul>
-            </nav>
-            <section class="hero-section">
-                <div class="hero-texts">
-                    <h1>Onde a madeira encontra o sabor.</h1>
-                    <p class="short-text">feitas à mão</p>
-                    <p class="text">Cada peça da Tabaum carrega trabalho manual, madeira nobre e acabamento pensado para durar anos. Ideal para quem leva a cozinha e o churrasco a sério e não aceita qualidade comum.</p>
-                    <button class="hero-btn">Ver tábuas</button>
+    <header>
+      <nav id="navbar">
+        <img src="images/tabaum_brand.png" class="brand" alt="Tabaum Brand">
+        
+        <ul class="links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Meats</a></li>
+          <li><a href="#">Contact us</a></li>
+        </ul>
+      
+        <div class="nav-right">
+          <div class="nav-toggle"></div>
+        </div>
+      </nav>
+      
 
+        <section class="hero-section">
+            <div class="hero-texts">
+                <h1>Onde a madeira encontra o sabor.</h1>
+                <p class="short-text">feitas à mão</p>
+                <p class="text">Cada peça da Tabaum carrega trabalho manual, madeira nobre e acabamento pensado para durar anos. Ideal para quem leva a cozinha e o churrasco a sério e não aceita qualidade comum.</p>
+                <button class="hero-btn">Ver tábuas</button>
+            </div>
+            <div class="hero-image"></div>
+        </section>
+    </header>
+
+    <main>
+        <section class="products-section">
+            <h2 class="section-title">Tábuas em destaque</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="images/board.jpeg" alt="Tábua artesanal robusta">
+                    <h3>Tábua Rústica Premium</h3>
+                    <p>Madeira nobre, espessura reforçada e acabamento manual.</p>
+                    <button class="product-btn">Ver detalhes</button>
                 </div>
-                <div class="hero-image">
-    
+                <div class="product-card">
+                    <img src="images/board2.jpeg" alt="Tábua para churrasco">
+                    <h3>Tábua Churrasco Pro</h3>
+                    <p>Resistência alta e canaleta para líquidos.</p>
+                    <button class="product-btn">Ver detalhes</button>
                 </div>
-            </section>
-      </header>
-    
+                <div class="product-card">
+                    <img src="images/board3.jpeg" alt="Tábua elegante">
+                    <h3>Tábua Elegance</h3>
+                    <p>Design sofisticado para servir e preparar.</p>
+                    <button class="product-btn">Ver detalhes</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="advantages-section">
+            <h2 class="section-title">Por que escolher a Tabaum?</h2>
+            <p class="advantages-subtitle">Tábuas artesanais que transformam sua cozinha e churrasco em uma experiência única.</p>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="icon-wrapper"><img src="icons/chisel.png" alt="Artesanal"></div>
+                    <h3>Artesanal</h3>
+                    <p>Feitas à mão com atenção a cada detalhe, garantindo qualidade única.</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="icon-wrapper"><img src="icons/wood.png" alt="Madeira Nobre"></div>
+                    <h3>Madeira Nobre</h3>
+                    <p>Selecionamos apenas madeiras de alta qualidade para durabilidade e beleza.</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="icon-wrapper"><img src="icons/shield.png" alt="Durabilidade"></div>
+                    <h3>Durabilidade</h3>
+                    <p>Peças resistentes, pensadas para uso diário sem perder o acabamento.</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="icon-wrapper"><img src="icons/cooking-tools.png" alt="Ideal para Churrasco"></div>
+                    <h3>Perfeitas para Churrasco</h3>
+                    <p>Design funcional que facilita o preparo e a apresentação de carnes.</p>
+                </div>
+            </div>
+            <p class="advantages-cta">Descubra a tábua perfeita e leve a experiência Tabaum para sua casa.</p>
+            <button class="hero-btn">Ver Tábuas</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
