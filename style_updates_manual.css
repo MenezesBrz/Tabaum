@@ -1,0 +1,100 @@
+/* Navigation Update */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.login-btn:hover {
+    background: #E86C0E;
+    border-color: #E86C0E;
+}
+
+.nav-toggle i {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #111, #0a0a0a);
+    text-align: center;
+    border-top: 1px solid #222;
+}
+
+.newsletter-content h2 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.newsletter-content p {
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background: #000;
+    color: #fff;
+    outline: none;
+}
+
+.newsletter-form button {
+    padding: 12px 25px;
+    background: #E86C0E;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.newsletter-form button:hover {
+    background: #c05540;
+}
+
+/* Enhancements for Advantages */
+.advantage-card-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.advantage-card-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    .newsletter-form {
+        flex-direction: column;
+    }
+}

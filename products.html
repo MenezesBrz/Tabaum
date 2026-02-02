@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabaum - Nossos Produtos</title>
+    <link rel="stylesheet" href="style.css"> <!-- Base styles -->
+    <link rel="stylesheet" href="products.css"> <!-- Store styles -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="store-nav">
+        <a href="index.html">
+            <img src="images/tabaum_brand.png" class="brand" alt="Tabaum Brand">
+        </a>
+
+        <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">Sobre Nós</a></li>
+            <li><a href="products.html" class="active">Produtos</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <a href="login.html" class="cart-trigger"><i class="fas fa-user-circle"></i></a>
+            <div class="cart-trigger" id="cartBtn">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+            <div class="nav-toggle"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="products-hero">
+        <div class="hero-content">
+            <h1 class="fade-in-up">Coleção Exclusiva</h1>
+            <p class="fade-in-up delay-1">Design, funcionalidade e acabamento artesanal para sua cozinha.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="store-container">
+
+        <!-- Filters Toolbar -->
+        <section class="filters-toolbar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar produtos...">
+            </div>
+
+            <div class="filters-group">
+                <select id="categoryFilter">
+                    <option value="all">Todas as Categorias</option>
+                    <option value="rustica">Rústicas</option>
+                    <option value="corte">Corte & Preparo</option>
+                    <option value="servir">Para Servir</option>
+                </select>
+
+                <select id="sortFilter">
+                    <option value="default">Ordenar por</option>
+                    <option value="low">Menor Preço</option>
+                    <option value="high">Maior Preço</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Product Grid -->
+        <section class="products-grid" id="productsGrid">
+            <!-- Products will be injected by JS -->
+        </section>
+
+    </main>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="cart-items" id="cartItems">
+            <!-- Cart Items injected here -->
+            <div class="empty-cart-msg">Seu carrinho está vazio.</div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">R$ 0,00</span>
+            </div>
+            <button class="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/tabaum_brand.png" alt="Tabaum">
+                    <p>Qualidade e tradição em cada detalhe.</p>
+                </div>
+                <!-- Simplified Footer for brevity, matching others -->
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Tabaum. Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

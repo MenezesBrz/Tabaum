@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar - Tabaum</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+        <div class="login-image">
+            <div class="login-overlay">
+                <h2>Bem-vindo de volta!</h2>
+                <p>Acesse sua conta para acompanhar pedidos e novidades.</p>
+            </div>
+        </div>
+
+        <div class="login-form-wrapper">
+            <div class="form-box">
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar</a>
+
+                <h1 id="formTitle">Login</h1>
+                <p class="subtitle" id="formSubtitle">Entre com seus dados abaixo.</p>
+
+                <form id="authForm">
+                    <!-- Register specific fields -->
+                    <div class="input-group hidden" id="nameGroup">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" placeholder="Seu nome">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="exemplo@email.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <label class="remember">
+                            <input type="checkbox"> Lembrar de mim
+                        </label>
+                        <a href="#" class="forgot">Esqueceu a senha?</a>
+                    </div>
+
+                    <div id="messageBox" class="message-box hidden"></div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">Entrar</button>
+
+                    <div class="divider">ou entre com</div>
+
+                    <div class="social-login">
+                        <button type="button" class="social-btn"><i class="fab fa-google"></i></button>
+                        <button type="button" class="social-btn"><i class="fab fa-facebook-f"></i></button>
+                    </div>
+
+                    <p class="switch-msg">
+                        Não tem uma conta? <a href="#" id="switchAuth">Cadastre-se</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const switchAuth = document.getElementById('switchAuth');
+        const formTitle = document.getElementById('formTitle');
+        const formSubtitle = document.getElementById('formSubtitle');
+        const submitBtn = document.getElementById('submitBtn');
+        const authForm = document.getElementById('authForm');
+        const nameGroup = document.getElementById('nameGroup');
+        const messageBox = document.getElementById('messageBox');
+
+        let isLogin = true;
+
+        // Toggle Login/Register
+        switchAuth.addEventListener('click', (e) => {
+            e.preventDefault();
+            isLogin = !isLogin;
+            messageBox.classList.add('hidden'); // clear messages
+
+            if (isLogin) {
+                formTitle.innerText = "Login";
+                formSubtitle.innerText = "Entre com seus dados abaixo.";
+                submitBtn.innerText = "Entrar";
+                switchAuth.parentElement.innerHTML = 'Não tem uma conta? <a href="#" id="switchAuth">Cadastre-se</a>';
+                nameGroup.classList.add('hidden');
+                document.getElementById('name').required = false;
+            } else {
+                formTitle.innerText = "Criar Conta";
+                formSubtitle.innerText = "Preencha os campos para começar.";
+                submitBtn.innerText = "Cadastrar";
+                switchAuth.parentElement.innerHTML = 'Já tem uma conta? <a href="#" id="switchAuth">Faça Login</a>';
+                nameGroup.classList.remove('hidden');
+                document.getElementById('name').required = true;
+            }
+            // Re-attach listener
+            document.getElementById('switchAuth').addEventListener('click', arguments.callee);
+        });
+
+        // Handle Form Submission
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const name = document.getElementById('name').value;
+
+            // Basic UI Feedback
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Processando...";
+            messageBox.classList.add('hidden');
+            messageBox.className = 'message-box hidden';
+
+            const endpoint = isLogin ? 'http://localhost:3000/api/login' : 'http://localhost:3000/api/register';
+            const body = isLogin ? { email, password } : { email, password, name };
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    messageBox.innerText = data.message || "Sucesso!";
+                    messageBox.className = "message-box success";
+                    messageBox.classList.remove('hidden');
+
+                    // Save Token
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+
+                    // Redirect
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    throw new Error(data.error || "Algo deu errado");
+                }
+            } catch (error) {
+                messageBox.innerText = error.message;
+                messageBox.className = "message-box error";
+                messageBox.classList.remove('hidden');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = isLogin ? "Entrar" : "Cadastrar";
+            }
+        });
+    </script>
+</body>
+
+</html>

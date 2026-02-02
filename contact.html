@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fale Conosco - Tabaum</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header (Shared) -->
+    <header>
+        <nav id="navbar">
+            <img src="images/tabaum_brand.png" class="brand" alt="Tabaum Brand">
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">Sobre Nós</a></li>
+                <li><a href="products.html">Produtos</a></li>
+                <li><a href="contact.html" class="active">Contato</a></li>
+            </ul>
+            <div class="nav-right">
+                <a href="login.html" class="login-btn"><i class="fas fa-user-circle"></i> Entrar</a>
+                <div class="nav-toggle"><i class="fas fa-bars"></i></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content text-center">
+            <span class="eyebrow fade-in-up">Atendimento Exclusivo</span>
+            <h1 class="fade-in-up delay-1">Vamos Conversar?</h1>
+            <p class="fade-in-up delay-2">Estamos aqui para transformar sua dúvida em certeza e seu interesse em uma
+                experiência única.</p>
+        </div>
+    </section>
+
+    <!-- Values / Intro Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="values-grid">
+                <div class="value-item reveal">
+                    <i class="fas fa-award"></i>
+                    <h3>Excelência</h3>
+                    <p>Cada atendimento é tratado com o mesmo rigor de nossas peças.</p>
+                </div>
+                <div class="value-item reveal delay-1">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Cuidado</h3>
+                    <p>Entendemos sua necessidade para oferecer a tábua perfeita.</p>
+                </div>
+                <div class="value-item reveal delay-2">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Agilidade</h3>
+                    <p>Respostas rápidas e eficientes para você não perder tempo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="main-contact">
+        <div class="container">
+            <div class="contact-layout">
+
+                <!-- Contact Info Area -->
+                <div class="contact-info reveal">
+                    <h2>Canais de Atendimento</h2>
+                    <p class="info-intro">Escolha a forma mais conveniente para falar conosco.</p>
+
+                    <div class="info-card">
+                        <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                        <div class="info-text">
+                            <h4>E-mail</h4>
+                            <p>contato@tabaum.com.br</p>
+                            <a href="mailto:contato@tabaum.com.br" class="text-link">Enviar mensagem</a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="icon-box"><i class="fab fa-whatsapp"></i></div>
+                        <div class="info-text">
+                            <h4>WhatsApp</h4>
+                            <p>(11) 99999-9999</p>
+                            <a href="#" class="text-link">Chamar agora</a>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info-text">
+                            <h4>Ateliê</h4>
+                            <p>Rua da Madeira, 123 - São Paulo, SP</p>
+                            <span class="note">Visitas apenas com agendamento</span>
+                        </div>
+                    </div>
+
+                    <div class="schedule-box">
+                        <h5>Horário de Atendimento</h5>
+                        <p><i class="far fa-clock"></i> Seg - Sex: 09h às 18h</p>
+                        <p><i class="far fa-clock"></i> Sáb: 09h às 13h</p>
+                    </div>
+                </div>
+
+                <!-- Advanced Form -->
+                <div class="contact-form-wrapper reveal delay-1">
+                    <h3>Envie sua Mensagem</h3>
+                    <form id="contactForm" class="modern-form">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <input type="text" id="name" required placeholder=" " autocomplete="off">
+                                <label for="name">Nome Completo</label>
+                                <span class="input-border"></span>
+                            </div>
+                            <div class="input-group">
+                                <input type="tel" id="phone" required placeholder=" " autocomplete="off">
+                                <label for="phone">Telefone</label>
+                                <span class="input-border"></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="email" id="email" required placeholder=" " autocomplete="off">
+                            <label for="email">E-mail</label>
+                            <div class="validation-icon"><i class="fas fa-check-circle"></i></div>
+                            <span class="input-border"></span>
+                        </div>
+
+                        <div class="input-group select-group">
+                            <select id="subject" required>
+                                <option value="" disabled selected>Assunto</option>
+                                <option value="duvida">Dúvida sobre produto</option>
+                                <option value="personalizado">Pedido Personalizado</option>
+                                <option value="parceria">Parcerias / B2B</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                            <span class="input-border"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <textarea id="message" required placeholder=" " rows="4"></textarea>
+                            <label for="message">Mensagem</label>
+                            <span class="input-border"></span>
+                        </div>
+
+                        <button type="submit" class="send-btn">
+                            <span>Enviar Mensagem</span>
+                            <div class="btn-icon"><i class="fas fa-paper-plane"></i></div>
+                        </button>
+
+                        <div id="formFeedback" class="form-feedback hidden"></div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Emotional / Stats Section -->
+    <section class="emotional-section reveal">
+        <div class="container">
+            <div class="emotional-content">
+                <div class="emotional-text">
+                    <h2>Por que escolher a Tabaum?</h2>
+                    <p>Não vendemos apenas tábuas de corte. Entregamos a peça central dos seus melhores momentos
+                        gastronômicos.</p>
+                    <ul class="highlights">
+                        <li><i class="fas fa-check"></i> Madeira de lei certificada</li>
+                        <li><i class="fas fa-check"></i> Acabamento atóxico com óleo mineral e cera de abelha</li>
+                        <li><i class="fas fa-check"></i> Design ergonômico testado por chefs</li>
+                    </ul>
+                </div>
+                <div class="stats-counter">
+                    <div class="stat-box">
+                        <span class="counter-number" data-target="5000">0</span><span>+</span>
+                        <p>Clientes Satisfeitos</p>
+                    </div>
+                    <div class="stat-box">
+                        <span class="counter-number" data-target="150">0</span><span>+</span>
+                        <p>Modelos Exclusivos</p>
+                    </div>
+                    <div class="stat-box">
+                        <span class="counter-number" data-target="10">0</span>
+                        <p>Anos de Tradição</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mini Gallery -->
+    <section class="mini-gallery reveal">
+        <div class="gallery-track">
+            <img src="images/board.jpeg" alt="Tábua">
+            <img src="images/board2.jpeg" alt="Tábua">
+            <img src="images/board3.jpeg" alt="Tábua">
+            <img src="images/hero2.png" alt="Tábua">
+            <img src="images/board.jpeg" alt="Tábua"> <!-- Repeat for infinite effect -->
+        </div>
+    </section>
+
+    <!-- Footer (Shared) -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/tabaum_brand.png" alt="Tabaum">
+                    <p>Qualidade e tradição em cada detalhe.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">Sobre Nós</a></li>
+                        <li><a href="products.html">Produtos</a></li>
+                        <li><a href="contact.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Siga-nos</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tabaum. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Specific Contact Form Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contactForm');
+            const inputs = form.querySelectorAll('input, textarea, select');
+            const btn = form.querySelector('.send-btn');
+            const feedback = document.getElementById('formFeedback');
+
+            // Float Label Fix & Validation styling
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => input.parentElement.classList.add('focused'));
+                input.addEventListener('blur', () => {
+                    if (!input.value) input.parentElement.classList.remove('focused');
+                    // Simple email validation visual
+                    if (input.type === 'email' && input.value) {
+                        if (input.value.includes('@') && input.value.includes('.')) {
+                            input.parentElement.classList.add('valid');
+                            input.parentElement.classList.remove('invalid');
+                        } else {
+                            input.parentElement.classList.add('invalid');
+                            input.parentElement.classList.remove('valid');
+                        }
+                    }
+                });
+            });
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Button Loading State
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<span>Enviando...</span><div class="spinner"></div>';
+                btn.style.pointerEvents = 'none';
+                btn.style.opacity = '0.8';
+
+                // Simulate API call
+                setTimeout(() => {
+                    btn.innerHTML = '<span>Enviado com Sucesso!</span> <i class="fas fa-check"></i>';
+                    btn.classList.add('success');
+
+                    feedback.innerText = "Recebemos sua mensagem! Em breve entraremos em contato.";
+                    feedback.classList.add('show');
+                    feedback.className = 'form-feedback show success';
+
+                    form.reset();
+                    inputs.forEach(i => i.parentElement.classList.remove('focused', 'valid', 'invalid'));
+
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.classList.remove('success');
+                        btn.style.pointerEvents = 'all';
+                        btn.style.opacity = '1';
+                        feedback.classList.remove('show');
+                    }, 4000);
+
+                }, 2000);
+            });
+        });
+
+        // Counter Animation (Duplicate logic if not fully covered in script.js specific selectors)
+        // script.js covers .counter, here we use .counter-number with data-target. 
+        // Let's add specific observer here just for the contact page to ensure it works perfectly
+        const contactStats = document.querySelectorAll(".counter-number");
+        const contactObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000;
+                    const step = Math.ceil(target / (duration / 16));
+
+                    let current = 0;
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            counter.innerText = target;
+                            clearInterval(timer);
+                        } else {
+                            counter.innerText = current;
+                        }
+                    }, 16);
+                    contactObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+        contactStats.forEach(c => contactObserver.observe(c));
+    </script>
+</body>
+
+</html>
