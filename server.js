@@ -9,12 +9,12 @@ const path = require('path');
 
 const app = express();
 const PORT = 3000;
-const SECRET_KEY = 'tabaum-premium-secret-key-change-in-prod'; // In a real app, use ENV variables
+const SECRET_KEY = 'tabaum-premium-secret-key-change-in-prod'; 
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '.'))); // Serve static files from current dir
+app.use(express.static(path.join(__dirname, '.')));
 
 // Database Setup
 let db;
