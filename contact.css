@@ -48,9 +48,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -60px;
-    /* Under navbar */
-    padding-top: 60px;
+    margin-top: 0px;
+    /* Under navbar removed */
+    padding-top: 0px;
 }
 
 .hero-overlay {
