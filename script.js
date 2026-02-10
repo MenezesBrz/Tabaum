@@ -21,14 +21,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- ANIMATIONS (Reveal on Scroll) ---
-    const reveals = document.querySelectorAll(".reveal");
+    const revealElements = document.querySelectorAll(".reveal-fade, .reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-grow");
+    
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add("active");
+            if (entry.isIntersecting) {
+                entry.target.classList.add("animated");
+                // Optional: stop observing once animated
+                // revealObserver.unobserve(entry.target);
+            }
         });
-    }, { threshold: 0.15 });
-
-    reveals.forEach(el => revealObserver.observe(el));
+    }, { 
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px" // Trigger slightly before the element is fully in view
+    });
+ 
+    revealElements.forEach(el => revealObserver.observe(el));
 
     // --- NUMBER COUNTERS ---
     const counters = document.querySelectorAll(".counter");

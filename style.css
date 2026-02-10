@@ -907,3 +907,92 @@ footer {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 }
+
+/* =========================================
+   ANIMATION SYSTEM
+   ========================================= */
+
+[class*="reveal-"] {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-fade.animated {
+  opacity: 1;
+}
+
+.reveal-up {
+  transform: translateY(40px);
+}
+
+.reveal-up.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-down {
+  transform: translateY(-40px);
+}
+
+.reveal-down.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  transform: translateX(-40px);
+}
+
+.reveal-left.animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  transform: translateX(40px);
+}
+
+.reveal-right.animated {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-grow {
+  transform: scale(0.9);
+}
+
+.reveal-grow.animated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger Delays */
+.delay-100 {
+  transition-delay: 100ms;
+}
+
+.delay-200 {
+  transition-delay: 200ms;
+}
+
+.delay-300 {
+  transition-delay: 300ms;
+}
+
+.delay-400 {
+  transition-delay: 400ms;
+}
+
+.delay-500 {
+  transition-delay: 500ms;
+}
+
+.delay-600 {
+  transition-delay: 600ms;
+}
+
+/* Special Hero Animation */
+.hero-texts .reveal-up {
+  transition-duration: 1.2s;
+}
