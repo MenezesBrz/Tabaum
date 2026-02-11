@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- ANIMATIONS (Reveal on Scroll) ---
     const revealElements = document.querySelectorAll(".reveal-fade, .reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-grow");
-    
+
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -31,11 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 // revealObserver.unobserve(entry.target);
             }
         });
-    }, { 
+    }, {
         threshold: 0.1,
         rootMargin: "0px 0px -50px 0px" // Trigger slightly before the element is fully in view
     });
- 
+
     revealElements.forEach(el => revealObserver.observe(el));
 
     // --- NUMBER COUNTERS ---
@@ -239,18 +239,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Determine if it's the icon-only button (nav) or text button
                 if (btn.classList.contains('login-btn')) {
                     btn.innerHTML = `<i class="fas fa-user-check"></i> ${user.name.split(' ')[0]}`;
-                } else if (btn.innerHTML.includes('fa-user-circle')) {
+                } else if (btn.innerHTML.includes('fa-user-circle') || btn.querySelector('.fa-user-circle')) {
                     btn.innerHTML = `<i class="fas fa-user-check"></i>`;
                 }
-
-                // Change link to prevent going to login page again (optional, or add logout menu)
-                btn.href = "#";
-                btn.onclick = (e) => {
-                    e.preventDefault();
-                    if (confirm("Deseja sair da sua conta?")) {
-                        logout();
-                    }
-                };
             });
         }
     }

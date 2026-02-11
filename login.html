@@ -19,7 +19,8 @@
         <div class="login-image reveal-left">
             <div class="login-overlay">
                 <h2 class="reveal-up delay-100">Bem-vindo de volta!</h2>
-                <p class="reveal-up delay-200">Acesse sua conta para acompanhar pedidos e novidades.</p>
+                <p class="reveal-up delay-200">Acesse sua conta para acompanhar pedidos e novidades exclusivas da
+                    Tabaum.</p>
             </div>
         </div>
 
@@ -29,6 +30,17 @@
 
                 <h1 id="formTitle">Login</h1>
                 <p class="subtitle" id="formSubtitle">Entre com seus dados abaixo.</p>
+
+                <div id="loggedInView" class="hidden">
+                    <div class="profile-preview">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <h2 id="userName">Usuário</h2>
+                        <p id="userEmail">email@exemplo.com</p>
+                    </div>
+                    <button id="logoutBtn" class="submit-btn secondary">Sair da Conta</button>
+                    <a href="index.html" class="back-link"
+                        style="display: block; text-align: center; margin-top: 20px;">Voltar para Início</a>
+                </div>
 
                 <form id="authForm">
                     <!-- Register specific fields -->
@@ -45,6 +57,9 @@
                     <div class="input-group">
                         <label for="password">Senha</label>
                         <input type="password" id="password" placeholder="••••••••" required>
+                        <div id="strengthMeter" class="strength-meter hidden">
+                            <div id="strengthBar" class="strength-bar"></div>
+                        </div>
                     </div>
 
                     <div class="form-actions">
@@ -71,95 +86,167 @@
                 </form>
             </div>
         </div>
-    </div>
 
-    <script>
-        const switchAuth = document.getElementById('switchAuth');
-        const formTitle = document.getElementById('formTitle');
-        const formSubtitle = document.getElementById('formSubtitle');
-        const submitBtn = document.getElementById('submitBtn');
-        const authForm = document.getElementById('authForm');
-        const nameGroup = document.getElementById('nameGroup');
-        const messageBox = document.getElementById('messageBox');
+        <div id="toastContainer" class="toast-container"></div>
 
-        let isLogin = true;
+        <script>
+            const switchAuth = document.getElementById('switchAuth');
+            const formTitle = document.getElementById('formTitle');
+            const formSubtitle = document.getElementById('formSubtitle');
+            const submitBtn = document.getElementById('submitBtn');
+            const authForm = document.getElementById('authForm');
+            const nameGroup = document.getElementById('nameGroup');
+            const passwordInput = document.getElementById('password');
+            const strengthMeter = document.getElementById('strengthMeter');
+            const strengthBar = document.getElementById('strengthBar');
+            const toastContainer = document.getElementById('toastContainer');
+            const loggedInView = document.getElementById('loggedInView');
+            const userName = document.getElementById('userName');
+            const userEmail = document.getElementById('userEmail');
+            const logoutBtn = document.getElementById('logoutBtn');
 
-        // Toggle Login/Register
-        switchAuth.addEventListener('click', (e) => {
-            e.preventDefault();
-            isLogin = !isLogin;
-            messageBox.classList.add('hidden'); // clear messages
+            let isLogin = true;
 
-            if (isLogin) {
-                formTitle.innerText = "Login";
-                formSubtitle.innerText = "Entre com seus dados abaixo.";
-                submitBtn.innerText = "Entrar";
-                switchAuth.parentElement.innerHTML = 'Não tem uma conta? <a href="#" id="switchAuth">Cadastre-se</a>';
-                nameGroup.classList.add('hidden');
-                document.getElementById('name').required = false;
-            } else {
-                formTitle.innerText = "Criar Conta";
-                formSubtitle.innerText = "Preencha os campos para começar.";
-                submitBtn.innerText = "Cadastrar";
-                switchAuth.parentElement.innerHTML = 'Já tem uma conta? <a href="#" id="switchAuth">Faça Login</a>';
-                nameGroup.classList.remove('hidden');
-                document.getElementById('name').required = true;
-            }
-            // Re-attach listener
-            document.getElementById('switchAuth').addEventListener('click', arguments.callee);
-        });
+            // Check if already logged in
+            function checkInitialAuth() {
+                const user = JSON.parse(localStorage.getItem('user'));
+                const token = localStorage.getItem('token');
 
-        // Handle Form Submission
-        authForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const name = document.getElementById('name').value;
-
-            // Basic UI Feedback
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Processando...";
-            messageBox.classList.add('hidden');
-            messageBox.className = 'message-box hidden';
-
-            const endpoint = isLogin ? 'http://localhost:3000/api/login' : 'http://localhost:3000/api/register';
-            const body = isLogin ? { email, password } : { email, password, name };
-
-            try {
-                const response = await fetch(endpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(body)
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    messageBox.innerText = data.message || "Sucesso!";
-                    messageBox.className = "message-box success";
-                    messageBox.classList.remove('hidden');
-
-                    // Save Token
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('user', JSON.stringify(data.user));
-
-                    // Redirect
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 1500);
-                } else {
-                    throw new Error(data.error || "Algo deu errado");
+                if (user && token) {
+                    authForm.classList.add('hidden');
+                    formSubtitle.classList.add('hidden');
+                    loggedInView.classList.remove('hidden');
+                    userName.innerText = user.name;
+                    userEmail.innerText = user.email;
+                    formTitle.innerText = "Sua Conta";
                 }
-            } catch (error) {
-                messageBox.innerText = error.message;
-                messageBox.className = "message-box error";
-                messageBox.classList.remove('hidden');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerText = isLogin ? "Entrar" : "Cadastrar";
             }
-        });
-    </script>
+            checkInitialAuth();
+
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                showToast("Sessão encerrada.", 'success');
+                setTimeout(() => window.location.reload(), 1000);
+            });
+
+            // Toast Notification System
+            function showToast(message, type = 'success') {
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                toast.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                <span>${message}</span>
+            `;
+                toastContainer.appendChild(toast);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateX(100%)';
+                    setTimeout(() => toast.remove(), 500);
+                }, 4000);
+            }
+
+            // Password Strength Logic
+            passwordInput.addEventListener('input', () => {
+                if (isLogin) {
+                    strengthMeter.classList.add('hidden');
+                    return;
+                }
+
+                const val = passwordInput.value;
+                if (val.length === 0) {
+                    strengthMeter.classList.add('hidden');
+                    return;
+                }
+
+                strengthMeter.classList.remove('hidden');
+                let strength = 0;
+                if (val.length >= 8) strength++;
+                if (/[A-Z]/.test(val)) strength++;
+                if (/[0-9]/.test(val)) strength++;
+                if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+                strengthBar.className = 'strength-bar';
+                if (strength <= 2) strengthBar.classList.add('weak');
+                else if (strength === 3) strengthBar.classList.add('medium');
+                else strengthBar.classList.add('strong');
+            });
+
+            // Toggle Login/Register
+            function toggleAuth(e) {
+                if (e) e.preventDefault();
+                isLogin = !isLogin;
+                strengthMeter.classList.add('hidden');
+
+                if (isLogin) {
+                    formTitle.innerText = "Login";
+                    formSubtitle.innerText = "Entre com seus dados abaixo.";
+                    submitBtn.innerText = "Entrar";
+                    const container = switchAuth.parentElement;
+                    container.innerHTML = 'Não tem uma conta? <a href="#" id="switchAuth">Cadastre-se</a>';
+                    nameGroup.classList.add('hidden');
+                    document.getElementById('name').required = false;
+                } else {
+                    formTitle.innerText = "Criar Conta";
+                    formSubtitle.innerText = "Preencha os campos para começar.";
+                    submitBtn.innerText = "Cadastrar";
+                    const container = switchAuth.parentElement;
+                    container.innerHTML = 'Já tem uma conta? <a href="#" id="switchAuth">Faça Login</a>';
+                    nameGroup.classList.remove('hidden');
+                    document.getElementById('name').required = true;
+                }
+
+                // Re-fetch and re-attach listener to the new link
+                const newSwitchAuth = document.getElementById('switchAuth');
+                newSwitchAuth.addEventListener('click', toggleAuth);
+            }
+
+            switchAuth.addEventListener('click', toggleAuth);
+
+            // Handle Form Submission
+            authForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = passwordInput.value;
+                const name = document.getElementById('name').value;
+
+                // UI Feedback
+                submitBtn.disabled = true;
+                const originalBtnText = submitBtn.innerText;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+
+                const endpoint = isLogin ? '/api/login' : '/api/register';
+                const body = isLogin ? { email, password } : { email, password, name };
+
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        showToast(data.message || "Sucesso!", 'success');
+
+                        localStorage.setItem('token', data.token);
+                        localStorage.setItem('user', JSON.stringify(data.user));
+
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1500);
+                    } else {
+                        throw new Error(data.error || "Algo deu errado");
+                    }
+                } catch (error) {
+                    showToast(error.message, 'error');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = originalBtnText;
+                }
+            });
+        </script>
 </body>
 
 </html>
